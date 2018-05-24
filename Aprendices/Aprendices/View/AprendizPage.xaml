@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aprendices.View.AprendizPage"
+             Title = "Aprendices Centro">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:PromedioColorComverter x:Key ="promConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout
+        Margin="10">
+        <Button Text="Caracterización Aprendices"
+                BackgroundColor="Navy"
+                TextColor="White"
+                Command="{Binding CargarAprendizCommand}" />
+        <ActivityIndicator IsRunning="{Binding IsEnabled}"
+                           IsVisible="{Binding IsEnable}"/>
+        <ListView ItemsSource="{Binding Aprendices}"
+                  HasUnevenRows="True"
+                  x:Name="lstName">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Stacklayout Orientation ="">
+                            <Label Text="{Binding Nombre}"
+                                   FontSize="18"/>
+                            <Label Text="{Binding Apellido}"
+                                   FontSize="18"/>
+                            <Label Text="{Binding Promedio}"
+                                   TextColor="{Binding Promedio.Converter={StaticResource promConverter}}"/>
+                        </Stacklayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+    </StackLayout>
+  <ContentView.Content>
+      <StackLayout>
+          <Label Text="Hello Xamarin.Forms!" />
+      </StackLayout>
+  </ContentView.Content>
+</ContentView>
